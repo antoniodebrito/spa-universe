@@ -17,11 +17,15 @@ export class Router {
   handle() {
     const { pathname } = window.location;
     const route = this.routes[pathname] || this.routes[404];
+    const bodyPage = document.querySelector('#backPage')
 
     fetch(route)
     .then(data => data.text())
     .then(html => {
       document.querySelector('#app').innerHTML = html;
+      let classChange = pathname.replace(/\//, '')
+      bodyPage.classList = "";
+      bodyPage.classList.add(classChange)
     })
 
   }
